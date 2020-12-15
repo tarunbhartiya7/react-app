@@ -45,8 +45,6 @@ sudo apt install docker.io -y
 sudo docker --version
 sudo systemctl start docker
 sudo systemctl enable docker
-sudo docker rm -f $(sudo docker ps -aq)
-
 
 '''
           }
