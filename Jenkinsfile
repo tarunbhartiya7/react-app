@@ -26,5 +26,12 @@ yarn --version
       }
     }
 
+    stage('Build project') {
+      steps {
+        sh '''cd /home/ubuntu/workspace/react-app_master
+yarn install && yarn build'''
+      }
+    }
+
   }
 }
