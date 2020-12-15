@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'worker'
+    }
+
+  }
   stages {
     stage('pull-from-github') {
       steps {
