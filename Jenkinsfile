@@ -15,7 +15,7 @@ pipeline {
 
     stage('Install node and yarn') {
       steps {
-        sh '''curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+        sh '''curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt-get install -y nodejs
 node -v'''
         sh '''curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
