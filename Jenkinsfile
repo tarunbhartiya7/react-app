@@ -30,9 +30,35 @@ yarn --version
     }
 
     stage('Build project') {
-      steps {
-        sh '''cd /home/ubuntu/workspace/react-app_master
+      parallel {
+        stage('Build project') {
+          steps {
+            sh '''cd /home/ubuntu/workspace/react-app_master
 yarn install && yarn build'''
+          }
+        }
+
+        stage('install docker') {
+          steps {
+            sh '''sudo apt-get update
+sudo apt install docker.io -y
+sudo docker --version
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo docker rm -f $(sudo docker ps -aq)
+
+
+'''
+          }
+        }
+
+      }
+    }
+
+    stage('deploy as webapp') {
+      steps {
+        sh '''sudo docker build /home/ubuntu/workspace/react-app_master -t webapp
+sudo docker run -d -p 80:80 webapp'''
       }
     }
 
