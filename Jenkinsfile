@@ -45,6 +45,7 @@ sudo apt install docker.io -y
 sudo docker --version
 sudo systemctl start docker
 sudo systemctl enable docker
+sudo docker container rm -f $(sudo docker ps -aq)
 
 '''
           }
@@ -55,7 +56,6 @@ sudo systemctl enable docker
 
     stage('deploy as webapp') {
       steps {
-        sh 'sudo docker container rm -f $(docker ps -aq)'
         sh '''sudo docker build /home/ubuntu/workspace/react-app_master -t webapp
 sudo docker run -d -p 80:80 webapp'''
       }
